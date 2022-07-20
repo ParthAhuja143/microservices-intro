@@ -1,0 +1,8 @@
+apiVersion: v1                                # look at v1 list of objects from kubernetes
+kind: Pod                                     # type of object
+metadata:                                     # config opptions for the object
+  name: posts                                 # give it a name of posts
+spec:                                         # attributes to be applied to the object
+  containers:                                 # required
+    - name: posts                             # add name to container
+      image: parthahuja143/posts:0.0.1        # image to be used for the container
