@@ -4,11 +4,11 @@
 
 ### Image
 An image contains 2 things
-    1. FS Snapshot - Resources and files to be needed
-    2. Startup Command - To run the container
+    1. FS Snapshot - Resources and files to be needed  
+    2. Startup Command - To run the container  
 
-### containers
-    1. Containers are isolated from one another
+### Containers
+    1. Containers are isolated from one another  
 
 ## CMD
 > `docker run <image_name>` - Create and run a container  
@@ -25,17 +25,27 @@ An image contains 2 things
 > `docker kill <container_id>` - Stop a running container SIGKILL - to stop process imidiately  
 > `docker exec -it <container_id> <command>` - Execute additional command inside a container  
 > `docker exec -it <container_id> sh` - Get access to shell  
-`
+> `docker build .` - Build your dockerfile to an image  
+> `docker build -t <docker_username>/<image_name>:<version_number> .` - Build an image and tag it  
+> `docker build -p <Outside_port>:<Port_inside_container> .` - Forward a request from outside port to inside a container port  
+> `docker push <image_id/tag>` - Push Image to dockerhub  
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 # KUBERNETES
 For orchestrating the different services and communication.
+
+## CMD
+`kubectl get pods/deployments/services` - Get info about the pods/deployments/services   
+`kubectl apply -f <filename.yaml>` - Create a pod/deployments/services  
+`kubectl describe pod/deployment/service <id>` - Get info about a kubectl object  
+`kubectl delete pod/deployment/service <id>` - Delete a kubectl object  
+`kubectl rollout restart pod/deployment/service <id>` - Restart a kubectl object  
 ## How to create an image and run the image with kubernetes
 
-> Go to the folder
-> Run the Dockerfile and tag with the name same as infrastructure/ files (example : `docker build -t parthahuja143/posts-deploy:1.0.0 .` )
-> Run the Deployment/Service/Pod (`kubectl -f apply deployment.yaml`)
+> Go to the folder  
+> Run the Dockerfile and tag with the name same as infrastructure/ files (example : `docker build -t parthahuja143/posts-deploy:1.0.0 .` )  
+> Run the Deployment/Service/Pod (`kubectl -f apply deployment.yaml`)  
 
 ## Updating the image used by a Deployment
 ### Method 1 (Not preferred)
@@ -43,12 +53,11 @@ For orchestrating the different services and communication.
 > Run `kubectl apply -f deployment.yaml` will output deployment configured and not created
 
 ### Method 2 (Preferred)
-
-> Use latest image tags
-> Don't tag images with the version numbers
-> Build the images
-> Push the image
-> kubectl rollout restart deployment {deployment_name}
+> Use latest image tags  
+> Don't tag images with the version numbers  
+> Build the images  
+> Push the image  
+> `kubectl rollout restart deployment {deployment_name}`  
 
 ## Types of Services
 
