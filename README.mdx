@@ -1,0 +1,58 @@
+# DOCKER
+
+## Flow
+
+### Image
+An image contains 2 things
+    1. FS Snapshot - Resources and files to be needed
+    2. Startup Command - To run the container
+
+### containers
+    1. Containers are isolated from one another
+
+## CMD
+`docker run <image_name>` - Create and run a container
+`docker run <image_name> [optional]<overrided_cmd>` - How to overide a default command in a container
+`docker ps` - List all running containers
+`docker ps --all` - List all containers
+`docker create <image_name>` - Create a container
+`docker start <container_id>` - Run a container (executes startup cmd)
+`docker start -a <container_id>` - Run a container with output logs
+`docker run <container_id> [optional]<overrided_cmd>` - Run a container and override default cmd
+`docker system prune` - Delete all stopped containers, build cache
+`docker logs <container_id>` - Get logs from a container
+`docker stop <container_id>` - Stop a running container SIGTERM - to stop after ending a running process
+`docker kill <container_id>` - Stop a running container SIGKILL - to stop process imidiately
+`docker exec -it <container_id> <command>` - Execute additional command inside a container
+`docker exec -it <container_id> sh` - Get access to shell
+`
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+# KUBERNETES
+For orchestrating the different services and communication.
+## How to create an image and run the image with kubernetes
+
+> Go to the folder
+> Run the Dockerfile and tag with the name same as infrastructure/ files (example : `docker build -t parthahuja143/posts-deploy:1.0.0 .` )
+> Run the Deployment/Service/Pod (`kubectl -f apply deployment.yaml`)
+
+## Updating the image used by a Deployment
+### Method 1 (Not preferred)
+
+> Run `kubectl apply -f deployment.yaml` will output deployment configured and not created
+
+### Method 2 (Preferred)
+
+> Use latest image tags
+> Don't tag images with the version numbers
+> Build the images
+> Push the image
+> kubectl rollout restart deployment {deployment_name}
+
+## Types of Services
+
+1. Cluster IP - Let's Pods communicate inside the Cluster
+2. NodePort - Let's Pods communicate with the outside world. Used mainly for development environment.
+3. Load Balancer - Let's Pods communicate outside the cluster, requires more configs and works like NodePort.
+4. External Name - Redirects an in-cluster request to an external CNAME url.
