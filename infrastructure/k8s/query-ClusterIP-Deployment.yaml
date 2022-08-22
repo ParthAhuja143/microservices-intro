@@ -1,33 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: event-bus-deploy
+  name: query-deploy
   labels:
-    app: event-bus
+    app: query
 spec: 
   replicas: 1
   selector: 
     matchLabels:
-      app: event-bus
+      app: query
   template:
     metadata:
       labels:
-        app: event-bus
+        app: query
     spec:
       containers:
-        - name: event-bus
-          image: parthahuja143/event-bus
+        - name: query
+          image: parthahuja143/query
+          ports:
+          - containerPort: 4002
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-clusterip-service
+  name: query-clusterip-service
 spec:
   selector:
-    app: event-bus
+    app: query
   type: ClusterIP
   ports:
-    - name: event-bus
+    - name: query
       protocol: TCP
-      port: 4005
-      targetPort: 4005
+      port: 4002
+      targetPort: 4002

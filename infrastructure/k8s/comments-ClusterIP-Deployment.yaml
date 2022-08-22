@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: posts-deploy
+  name: comments-deploy
   labels:
-    app: posts
+    app: comments
 spec: 
   replicas: 1
   selector: 
     matchLabels:
-      app: posts
+      app: comments
   template:
     metadata:
       labels:
-        app: posts
+        app: comments
     spec:
       containers:
-        - name: posts
-          image: parthahuja143/posts
+        - name: comments
+          image: parthahuja143/comments
           ports:
-          - containerPort: 4000
+          - containerPort: 4001
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-clusterip-service
+  name: comments-clusterip-service
 spec:
   selector:
-    app: posts
+    app: comments
   type: ClusterIP
   ports:
-    - name: posts
+    - name: comments
       protocol: TCP
-      port: 4000
-      targetPort: 4000
+      port: 4001
+      targetPort: 4001

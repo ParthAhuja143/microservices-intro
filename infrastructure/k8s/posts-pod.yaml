@@ -5,4 +5,4 @@ metadata:                                     # config opptions for the object
 spec:                                         # attributes to be applied to the object
   containers:                                 # required
     - name: posts                             # add name to container
-      image: parthahuja143/posts:0.0.1        # image to be used for the container
+      image: parthahuja143/posts              # image to be used for the container
