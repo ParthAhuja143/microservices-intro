@@ -79,3 +79,16 @@ Run `kubectl apply -f deployment.yaml` will output deployment configured and not
 2. `NodePort` - Let's Pods communicate with the outside world. Used mainly for development environment.
 3. `Load Balancer` - Let's Pods communicate outside the cluster, requires more configs and works like NodePort.
 4. `External Name` - Redirects an in-cluster request to an external CNAME url.
+
+### Load Balancer
+
+1. Load Balancer Service  
+Tells Kubernetes to reach out to it's provider (cloud provider) and provision a load balancer to communicate between our cluster and the outside world. Gets traffic inside a single pod.  
+It is completely out of our cluster which contains our pods.  
+
+2. Ingress
+A pod with a set of routing rules to distribute traffic to other services.  
+
+## Communicate to a service ?
+
+URL formed will be of type `http://<service_name>:<port>` so send the request to this URL.   

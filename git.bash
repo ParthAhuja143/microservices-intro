@@ -1,1 +1,1 @@
-git add . && git commit -m 'lol' && git push
+git add . && git commit -m 'commit' && git push
