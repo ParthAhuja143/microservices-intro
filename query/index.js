@@ -36,6 +36,7 @@ const handleEvent =(type, data) => {
         comment.status = status;
         comment.content = content;
     }
+    console.log(type, posts)
 
 }
 
@@ -48,7 +49,8 @@ app.get('/posts', (req,res) => {
 
 app.post('/events', (req,res) => {
     const {type, data} = req.body;
-
+    console.log('Event Received ',type);
+    
     handleEvent(type, data);
 
     res.status(200).send({});

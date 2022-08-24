@@ -8,6 +8,7 @@ app.use(bosyParser.json());
 
 app.post('/events', async (req,res) => {
     const {type, data} = req.body;
+    console.log('Event Received ',type);
 
     if(type === 'CommentCreated'){
         const status = data.content.includes('orange') ? 'rejected' : 'approved';

@@ -90,6 +90,15 @@ It is completely out of our cluster which contains our pods.
 A pod with a set of routing rules to distribute traffic to other services. 
 Ingress forwards the request to the specific pod in the cluster from Load Balancer Service.   
 
+Installation command - `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml`  
+
 ## Communicate to a service ?
 
 URL formed will be of type `http://<service_name>:<port>` so send the request to this URL.   
+
+## Changes to host file.
+
+In the ingres config file, the host is set to `abcd.com`, to re-route to localhost on going to `abcd.com`, make changes to the following -  
+
+Code - `127.0.0.1 abcd.com`  
+File - `etc/hosts` in Linux/Mac  

@@ -12,7 +12,7 @@ app.use(cors());
 
 app.post('/events', async (req,res) => {
     const event = req.body;
-    console.log('Event received', event.type);
+    console.log('Event emitted', event.type);
 
     events.push(event);
     //dispatch event to post

@@ -11,11 +11,7 @@ app.use(cors());
 
 const posts = {};
 
-app.get('/posts', (req,res) => {
-    res.status(200).send(posts);
-});
-
-app.post('/posts', async (req,res) => {
+app.post('/posts/create', async (req,res) => {
     const id = randomBytes(4).toString('hex');
 
     const {title }= req.body;
@@ -39,6 +35,9 @@ app.post('/posts', async (req,res) => {
 
 //recieving event
 app.post('/events' , (req,res) => {
+    const {type, data} = req.body;
+    console.log('Event Received ',type);
+    
     res.status(200).send({});
 })
 
