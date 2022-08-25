@@ -1,0 +1,59 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infrastructure/k8s/* # Watch all these yaml files
+build:
+  local:
+    push: false # When image is changed push to docker
+  artifacts:
+    - image: parthahuja143/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: 'src/**/*.js' # When we make changes to js file just update the pod and don't rebuild the image completely
+    - image: parthahuja143/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js' # When we make changes to js file just update the pod and don't rebuild the image completely
+    - image: parthahuja143/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js' # When we make changes to js file just update the pod and don't rebuild the image completely
+    - image: parthahuja143/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js' # When we make changes to js file just update the pod and don't rebuild the image completely
+    - image: parthahuja143/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js' # When we make changes to js file just update the pod and don't rebuild the image completely
+    - image: parthahuja143/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js' # When we make changes to js file just update the pod and don't rebuild the image completely
+  
